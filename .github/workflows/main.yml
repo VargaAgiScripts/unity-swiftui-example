@@ -1,3 +1,8 @@
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   macos:
     name: "Run on the fastest infrastructure"
