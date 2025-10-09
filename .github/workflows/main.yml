@@ -20,6 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Hello
-      run: |
-        set -e
-        echo "Hello again"
+        run: |
+          set -e
+          echo "Hello again"
