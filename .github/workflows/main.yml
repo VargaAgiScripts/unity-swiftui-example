@@ -17,6 +17,7 @@ jobs:
     name: "Run on linux"
     runs-on: ghcr.io/cirruslabs/ubuntu-runner-amd64:24.04-md
     steps:
+      - uses: actions/checkout@v4
       - name: Hello
       run: |
         set -e
