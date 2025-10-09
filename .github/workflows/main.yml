@@ -5,7 +5,7 @@ on:
 
 jobs:
   macos:
-    name: "Run on the fastest infrastructure"
+    name: "Run on mac"
     runs-on: ghcr.io/cirruslabs/macos-runner:sequoia
     steps:
       - uses: actions/checkout@v4
@@ -13,3 +13,9 @@ jobs:
         run: xcodes installed
       - name: Select Xcode 16.2
         run: sudo xcodes select 16.2
+  linux-x86:
+    name: "Run on linux"
+    runs-on: ghcr.io/cirruslabs/ubuntu-runner-amd64:24.04-md
+    run: |
+      set -e
+      echo "Hello again"
