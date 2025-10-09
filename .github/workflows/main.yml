@@ -16,6 +16,8 @@ jobs:
   linux-x86:
     name: "Run on linux"
     runs-on: ghcr.io/cirruslabs/ubuntu-runner-amd64:24.04-md
-    run: |
-      set -e
-      echo "Hello again"
+    steps:
+      - name: Hello
+      run: |
+        set -e
+        echo "Hello again"
