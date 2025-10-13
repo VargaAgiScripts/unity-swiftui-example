@@ -11,6 +11,8 @@ task:
   # Use a reasonably recent Ubuntu image
   container:
     image: ubuntu:22.04
+    cpu: 16
+    memory: 48G
   #env:
     #- CIRRUS_WORKING_DIR=/tmp/build
     #- ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}
