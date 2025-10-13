@@ -9,6 +9,7 @@ env:
   PTS_SILENT_MODE: FALSE
 
 task:
+  timeout_in: 120m
   name: android-linux-build
   # Use a reasonably recent Ubuntu image
   container:
