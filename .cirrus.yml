@@ -29,6 +29,7 @@ task:
     - ./install-sh
     - echo "Now comes the cat"
     - wget -c "https://www.dropbox.com/scl/fi/ig35h7duhscmqyln9c951/phoronix-test-suite.xml.xml?rlkey=fii5yg72ojqx14am3z47jezfy&st=22wk9zng&dl=1" -O phoronix-test-suite.xml
+    - mv ./phoronix-test-suite.xml /etc/phoronix-test-suite.xml 
     - echo "After download, before test run"
     - phoronix-test-suite batch-install pts/build-linux-kernel
     - phoronix-test-suite batch-run pts/build-linux-kernel
