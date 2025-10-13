@@ -1,19 +1,36 @@
-# .cirrus.yml
+# .cirrus.yml - Android (Linux) example for Cirrus CI
+
+# Top-level environment variables
+env:
+  ANDROID_SDK_ROOT: /opt/android-sdk
+  ANDROID_HOME: /opt/android-sdk
+  GRADLE_USER_HOME: $CIRRUS_WORKING_DIR/.gradle
+
+# Define a matrix: JDK 11 and 17 (modify as needed)
+matrix:
+  include:
+    - jdk: openjdk11
+      name: build-jdk11
+    - jdk: openjdk17
+      name: build-jdk17
+
 task:
-  name: macos-build-and-test
+  name: android-linux-build
+  # Use a reasonably recent Ubuntu image
   container:
-    image: macos  # note: Cirrus doesn't use Docker for macOS. Use osx_instance below.
-  osx_instance:
-    image: macos-12
-  env:
-    - CI=true
+    image: ubuntu:22.04
+  #env:
+    #- CIRRUS_WORKING_DIR=/tmp/build
+    #- ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}
+    #- GRADLE_USER_HOME=${GRADLE_USER_HOME}
+  # Cache Gradle and Android SDK to speed up consecutive runs
+  matrix:
+    include:
+      - jdk: openjdk11
+        name: build-jdk11
+      - jdk: openjdk17
+        name: build-jdk17
+  # Setup steps and build commands
   script:
-    - echo "Install dependencies"
-    - brew update
-    - brew install cocoapods # example
-    - pod install
-    - echo "Run build"
-    - xcodebuild -workspace MyApp.xcworkspace -scheme MyApp -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' build test
-  artifacts:
-    - path: build/reports
-      name: test-reports
+    # Basic system deps
+    - apt-get update -y
