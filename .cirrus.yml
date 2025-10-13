@@ -1,9 +1,19 @@
-container:
-  image: node:latest
-
-check_task:
-  node_modules_cache:
-    folder: node_modules
-    fingerprint_script: cat yarn.lock
-    populate_script: yarn install
-  test_script: yarn test
+# .cirrus.yml
+task:
+  name: macos-build-and-test
+  container:
+    image: macos  # note: Cirrus doesn't use Docker for macOS. Use osx_instance below.
+  osx_instance:
+    image: macos-12
+  env:
+    - CI=true
+  script:
+    - echo "Install dependencies"
+    - brew update
+    - brew install cocoapods # example
+    - pod install
+    - echo "Run build"
+    - xcodebuild -workspace MyApp.xcworkspace -scheme MyApp -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' build test
+  artifacts:
+    - path: build/reports
+      name: test-reports
