@@ -28,7 +28,8 @@ task:
     - cd phoronix-test-suite
     - ./install-sh
     - echo "Now comes the cat"
-    - cat << EOF > /etc/phoronix-test-suite.xml
+  script-xml: | 
+    cat << EOF > /etc/phoronix-test-suite.xml
             <?xml version="1.0"?>
             <!--Phoronix Test Suite v10.8.5-->
             <PhoronixTestSuite>
@@ -113,5 +114,6 @@ task:
               </Options>
             </PhoronixTestSuite>
             EOF
+  script-test:
     - phoronix-test-suite batch-install pts/build-linux-kernel
     - phoronix-test-suite batch-run pts/build-linux-kernel
