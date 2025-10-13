@@ -22,7 +22,7 @@ task:
   script:
     # Basic system deps
     - apt update
-    - DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt -y install php-cli php-xml php-json libelf-dev build-essential libelf-dev libncurses-dev libssl-dev bc flex bison libxml2-dev uuid-dev elfutils liblz4-tool liblzma-dev zlib1g-dev cpio gawk git
+    - DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt -y install php-cli php-xml php-json libelf-dev build-essential libelf-dev libncurses-dev libssl-dev bc flex bison libxml2-dev uuid-dev elfutils liblz4-tool liblzma-dev zlib1g-dev cpio gawk git zip unzip php-zip
     - git clone https://github.com/phoronix-test-suite/phoronix-test-suite
     - cd phoronix-test-suite
     - ./install-sh
