@@ -6,14 +6,6 @@ env:
   ANDROID_HOME: /opt/android-sdk
   GRADLE_USER_HOME: $CIRRUS_WORKING_DIR/.gradle
 
-# Define a matrix: JDK 11 and 17 (modify as needed)
-matrix:
-  include:
-    - jdk: openjdk11
-      name: build-jdk11
-    - jdk: openjdk17
-      name: build-jdk17
-
 task:
   name: android-linux-build
   # Use a reasonably recent Ubuntu image
@@ -24,12 +16,6 @@ task:
     #- ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}
     #- GRADLE_USER_HOME=${GRADLE_USER_HOME}
   # Cache Gradle and Android SDK to speed up consecutive runs
-  matrix:
-    include:
-      - jdk: openjdk11
-        name: build-jdk11
-      - jdk: openjdk17
-        name: build-jdk17
   # Setup steps and build commands
   script:
     # Basic system deps
