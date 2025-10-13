@@ -27,6 +27,7 @@ task:
     - git clone https://github.com/phoronix-test-suite/phoronix-test-suite
     - cd phoronix-test-suite
     - ./install-sh
+    - echo "Now comes the cat"
     - cat << EOF > /etc/phoronix-test-suite.xml
             <?xml version="1.0"?>
             <!--Phoronix Test Suite v10.8.5-->
