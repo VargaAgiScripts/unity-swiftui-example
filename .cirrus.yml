@@ -5,14 +5,16 @@ env:
   ANDROID_SDK_ROOT: /opt/android-sdk
   ANDROID_HOME: /opt/android-sdk
   GRADLE_USER_HOME: $CIRRUS_WORKING_DIR/.gradle
+  FORCE_TIMES_TO_RUN: 1
+  PTS_SILENT_MODE: FALSE
 
 task:
   name: android-linux-build
   # Use a reasonably recent Ubuntu image
   container:
     image: ubuntu:22.04
-    cpu: 4
-    memory: 12G
+    cpu: 8
+    memory: 32G
   #env:
     #- CIRRUS_WORKING_DIR=/tmp/build
     #- ANDROID_SDK_ROOT=${ANDROID_SDK_ROOT}
@@ -22,13 +24,11 @@ task:
   script:
     # Basic system deps
     - set -ex
-    - lscpu
     - apt update
     - DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt -y install php-cli php-xml php-json libelf-dev build-essential libelf-dev libncurses-dev libssl-dev bc flex bison libxml2-dev uuid-dev elfutils liblz4-tool liblzma-dev zlib1g-dev cpio gawk git zip unzip php-zip wget
     - git clone https://github.com/phoronix-test-suite/phoronix-test-suite
     - cd phoronix-test-suite
     - ./install-sh
-    - echo "Now comes the cat"
     # - wget -c "https://www.dropbox.com/scl/fi/2x9cj9thrbal34oqp1dz9/phoronix-test-suite.xml?rlkey=wo9yu9svsumbvoyqs8vn207du&st=oew26p26&dl=1" -O phoronix-test-suite.xml
     - wget -c "https://www.dropbox.com/scl/fi/ig35h7duhscmqyln9c951/phoronix-test-suite.xml.xml?rlkey=fii5yg72ojqx14am3z47jezfy&st=22wk9zng&dl=1" -O phoronix-test-suite.xml
     - mv ./phoronix-test-suite.xml /etc/phoronix-test-suite.xml 
