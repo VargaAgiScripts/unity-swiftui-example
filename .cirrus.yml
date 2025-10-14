@@ -1,5 +1,5 @@
 container:
-  image: ghcr.io/cirruslabs/android-sdk:30
+  image: ubuntu:22.04
   cpu: 4
   memory: 16G
 
