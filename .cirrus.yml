@@ -4,6 +4,12 @@ container:
   memory: 16G
 
 task:
-  script:
+  setup_script:
   - echo "Hello world"
+
+  git_clone_script:
+  - echo "git clone"
+
+  android_build_script:
   - ./gradlew --help
+  
