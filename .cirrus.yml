@@ -13,5 +13,7 @@ task:
 
   android_build_script:
   - cd pocket-casts-android
-  - ./gradlew --no-daemon assembleRelease --stacktrace
-  
+  # - ./gradlew --no-daemon assembleDebug --stacktrace
+  - ./gradlew build --stacktrace
+  - ./gradlew check
+
