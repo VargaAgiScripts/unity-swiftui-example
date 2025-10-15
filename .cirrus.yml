@@ -1,7 +1,7 @@
 container:
   image: ghcr.io/cirruslabs/android-sdk:35
-  cpu: 4
-  memory: 16G
+  cpu: 8
+  memory: 32G
 
 task:
   setup_script:
@@ -12,5 +12,5 @@ task:
 
   android_build_script:
   - cd pocket-casts-android
-  - ./gradlew --help
+  - ./gradlew --no-daemon assembleRelease --stacktrace
   
