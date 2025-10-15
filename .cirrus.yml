@@ -5,7 +5,8 @@ container:
 
 task:
   setup_script:
-  - echo "Hello world"
+  - sudo apt update
+  - sudo apt install openjdk-17-jdk -y
 
   git_clone_script:
   - git clone https://github.com/Automattic/pocket-casts-android
