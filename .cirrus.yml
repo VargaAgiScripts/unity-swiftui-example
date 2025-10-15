@@ -9,8 +9,8 @@ task:
 
   git_clone_script:
   - git clone https://github.com/Automattic/pocket-casts-android
-  - cd pocket-casts-android
 
   android_build_script:
-  - ls -lah
+  - cd pocket-casts-android
+  - ./gradlew --help
   
