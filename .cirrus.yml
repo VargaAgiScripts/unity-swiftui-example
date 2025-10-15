@@ -9,11 +9,12 @@ task:
   - sudo apt install openjdk-17-jdk -y
 
   git_clone_script:
-  - git clone https://github.com/Automattic/pocket-casts-android
+  # - git clone https://github.com/Automattic/pocket-casts-android
+  - git clone https://github.com/thunderbird/thunderbird-android
 
   android_build_script:
-  - cd pocket-casts-android
+  # - cd pocket-casts-android
+  - cd thunderbird-android
   # - ./gradlew --no-daemon assembleDebug --stacktrace
   - ./gradlew build --stacktrace
   - ./gradlew check
-
