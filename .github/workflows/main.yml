@@ -6,7 +6,7 @@ on:
 jobs:
   macos:
     name: "Run on mac"
-    runs-on: ghcr.io/cirruslabs/macos-runner:sequoia
+    runs-on: namespace-profile-agi
     steps:
       - uses: actions/checkout@v4
       - name: List Installed Xcodes
