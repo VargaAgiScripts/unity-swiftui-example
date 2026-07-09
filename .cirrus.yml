@@ -1,19 +1,23 @@
 # .cirrus.yml
 task:
+  macos_instance:
+    image: ghcr.io/cirruslabs/macos-runner:sonoma
+
+  task:
+    script: echo "Hello World from macOS!"
+
+
   name: macos-build-and-test
   container:
     image: macos  # note: Cirrus doesn't use Docker for macOS. Use osx_instance below.
   osx_instance:
     image: macos-12
-  env:
-    - CI=true
   script:
-    - echo "Install dependencies"
-    - brew update
-    - brew install cocoapods # example
-    - pod install
-    - echo "Run build"
-    - xcodebuild -workspace MyApp.xcworkspace -scheme MyApp -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' build test
+    - git clone https://github.com/devMEremenko/XcodeBenchmark.git
+    - cd ./XcodeBenchmark
+    - git checkout bb3d2920da548eb1490f3063af923f99f3f9c4a9
+    - echo "Run benchmark"
+    - sh ./benchmark.sh
   artifacts:
     - path: build/reports
       name: test-reports
