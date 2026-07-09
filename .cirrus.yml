@@ -1,19 +1,20 @@
-# .cirrus.yml
+container:
+  image: ghcr.io/cirruslabs/android-sdk:35
+  cpu: 8
+  memory: 32G
+
 task:
-  name: macos-build-and-test
-  container:
-    image: macos  # note: Cirrus doesn't use Docker for macOS. Use osx_instance below.
-  osx_instance:
-    image: macos-12
-  env:
-    - CI=true
-  script:
-    - echo "Install dependencies"
-    - brew update
-    - brew install cocoapods # example
-    - pod install
-    - echo "Run build"
-    - xcodebuild -workspace MyApp.xcworkspace -scheme MyApp -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 14,OS=17.0' build test
-  artifacts:
-    - path: build/reports
-      name: test-reports
+  setup_script:
+  - sudo apt update
+  - sudo apt install openjdk-17-jdk -y
+
+  git_clone_script:
+  # - git clone https://github.com/Automattic/pocket-casts-android
+  - git clone https://github.com/thunderbird/thunderbird-android
+
+  android_build_script:
+  # - cd pocket-casts-android
+  - cd thunderbird-android
+  # - ./gradlew --no-daemon assembleDebug --stacktrace
+  - ./gradlew build --stacktrace
+  - ./gradlew check
