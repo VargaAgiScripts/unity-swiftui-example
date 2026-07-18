@@ -23,3 +23,13 @@ jobs:
         run: |
           set -e
           echo "Hello again"
+          
+  measure:
+    runs-on: macos-latest
+    steps:
+      - name: Start marker
+        run: date -u +"START %Y-%m-%dT%H:%M:%SZ"
+      - name: Sleep 10 minutes
+        run: sleep 600
+      - name: End marker
+        run: date -u +"END %Y-%m-%dT%H:%M:%SZ"
